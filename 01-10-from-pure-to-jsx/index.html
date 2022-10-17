@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pure React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+
+    <script>
+      const Book = (props) => {
+        return React.createElement("div", {}, [
+          React.createElement("h2", {}, props.name),
+          React.createElement("p", {}, props.year),
+          React.createElement("p", {}, props.price),
+        ]);
+      };
+
+      const App = () => {
+        return React.createElement("div", {}, [
+          React.createElement(
+            //1й параметр это имя, 2й параметр это обьект с атрибутами, 3й элемент дочерний элемент(текст)
+            "h1",
+            { id: "hello" },
+            "Hello from React"
+          ),
+          React.createElement(Book, {
+            name: "JS for beginners",
+            year: 2010,
+            price: 800,
+          }),
+          React.createElement(Book, {
+            name: "React JSX",
+            year: 2018,
+            price: 9000,
+          }),
+          React.createElement(Book, {
+            name: "Vue JS",
+            year: 2020,
+            price: 1000,
+          }),
+        ]);
+      };
+
+      ReactDOM.render(
+        // принимает два параметра, 1й спрашивает, что мы хотим отрисовать, а 2й параметр куда
+        React.createElement(App),
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>
