@@ -6,35 +6,37 @@ import Preloader from "../components/Preloader";
 class Main extends React.Component {
   state = {
     movies: [],
+    loading: true,
   };
 
   componentDidMount() {
     fetch("http://www.omdbapi.com/?apikey=735ea35e&s=matrix")
       .then((response) => response.json())
-      .then((data) => this.setState({ movies: data.Search }));
+      .then((data) => this.setState({ movies: data.Search, loading: false }));
   }
 
   searchMovies = (str, type = "all") => {
+    this.setState({ loading: true });
     fetch(
       `http://www.omdbapi.com/?apikey=735ea35e&s=${str}${
         type !== "all" ? `&type=${type}` : ""
       }`
     )
       .then((response) => response.json())
-      .then((data) => this.setState({ movies: data.Search }));
+      .then((data) => this.setState({ movies: data.Search, loading: false }));
   };
 
   render() {
-    const { movies } = this.state;
+    const { movies, loading } = this.state;
 
     return (
       <main className='container content'>
         <Search searchMovies={this.searchMovies} />
-        {movies.length ? (
-          <Movies movies={this.state.movies} />
+        {loading ? (
+          <Preloader />
         ) : (
           <h5>
-            <Preloader />
+            <Movies movies={movies} />
           </h5>
         )}
       </main>
