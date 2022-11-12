@@ -3,7 +3,7 @@ import Movies from "../components/Movies";
 import Search from "../components/Search";
 import Preloader from "../components/Preloader";
 
-const API_KEY5 = process.env.REACT_APP_API_KEY5;
+const API_KEY4 = process.env.REACT_APP_API_KEY4;
 
 function Main() {
   const [movies, setMovies] = useState([]);
