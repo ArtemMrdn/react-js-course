@@ -7,7 +7,7 @@ function Shop() {
   const [goods, setGoods] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(function setGoods() {
+  useEffect(function getGoods() {
     fetch(API_URL, {
       headers: {
         Authorization: API_KEY,
