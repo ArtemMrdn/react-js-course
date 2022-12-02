@@ -13,7 +13,7 @@ function BasketList(props) {
       {order.lenght ? (
         order.map((item) => <BasketItem key={item.id} {...item} />)
       ) : (
-        <li className='collection-item'>Корзина пустая</li>
+        <li className='collection-item'>Корзина пуста</li>
       )}
       <li className='collection-item active'>Общая стоимость: {totalPrice}</li>
       <i className='material-icons basket-close' onClick={handleBasketShow}>

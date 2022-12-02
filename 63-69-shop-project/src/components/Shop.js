@@ -12,9 +12,7 @@ function Shop() {
   const [isBasketShow, setBasketShow] = useState(false);
 
   const handleBasketShow = () => {
-    {
-      setBasketShow(!isBasketShow);
-    }
+    setBasketShow(!isBasketShow);
   };
 
   const addToBasket = (item) => {
