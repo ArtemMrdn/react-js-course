@@ -87,3 +87,9 @@ nav {
     opacity: 1;
   }
 }
+
+.basket-quantity {
+  cursor: pointer;
+  vertical-align: middle;
+  color: #ee6e73;
+}
