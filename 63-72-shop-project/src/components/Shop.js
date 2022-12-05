@@ -4,12 +4,14 @@ import GoodsList from "./GoodsList";
 import { API_KEY, API_URL } from "../config";
 import Cart from "./Cart";
 import BasketList from "./BasketList";
+import Alert from "./Alert";
 
 function Shop() {
   const [goods, setGoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState([]);
   const [isBasketShow, setBasketShow] = useState(false);
+  const [alertName, setAlertName] = useState("");
 
   const handleBasketShow = () => {
     setBasketShow(!isBasketShow);
@@ -38,6 +40,7 @@ function Shop() {
       });
       setOrder(newOrder);
     }
+    setAlertName(item.name);
   };
 
   const removeFromBasket = (itemId) => {
@@ -45,18 +48,9 @@ function Shop() {
     setOrder(newOrder);
   };
 
-  useEffect(function getGoods() {
-    fetch(API_URL, {
-      headers: {
-        Authorization: API_KEY,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        data.featured && setGoods(data.featured);
-        setLoading(false);
-      });
-  }, []);
+  const closeAlert = () => {
+    setAlertName("");
+  };
 
   const incQuantity = (itemId) => {
     const newOrder = order.map((el) => {
@@ -88,6 +82,19 @@ function Shop() {
     setOrder(newOrder);
   };
 
+  useEffect(function getGoods() {
+    fetch(API_URL, {
+      headers: {
+        Authorization: API_KEY,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        data.featured && setGoods(data.featured);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <main className='container content'>
       <Cart quantity={order.length} handleBasketShow={handleBasketShow} />
@@ -105,6 +112,7 @@ function Shop() {
           decQuantity={decQuantity}
         />
       )}
+      {alertName && <Alert name={alertName} closeAlert={closeAlert} />}
     </main>
   );
 }
