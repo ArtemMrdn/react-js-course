@@ -34,6 +34,10 @@ export const ContextProvider = ({ clildren }) => {
     dispatch({ type: "REMOVE_FROM_BASKET", payload: { id: itemId } });
   };
 
+  value.handleBasketShow = () => {
+    dispatch({ type: "TOGGLE_BASKET" });
+  };
+
   // const value = {
   //   example: "hello from context",
   // };
