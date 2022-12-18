@@ -38,6 +38,10 @@ export const ContextProvider = ({ clildren }) => {
     dispatch({ type: "TOGGLE_BASKET" });
   };
 
+  value.setGoods = (data) => {
+    dispatch({ type: "SET_GOODS", payload: data });
+  };
+
   // const value = {
   //   example: "hello from context",
   // };
